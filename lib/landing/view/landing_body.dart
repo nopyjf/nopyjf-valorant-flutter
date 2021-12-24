@@ -13,7 +13,7 @@ class LandingBody extends StatelessWidget {
           case LandingStatus.loading:
             return const Text("Loading");
           case LandingStatus.success:
-            return const Text("Success");
+            return LandingAgentList(data: state.agents);
           case LandingStatus.error:
             return Text(state.errMsg);
         }

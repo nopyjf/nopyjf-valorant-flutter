@@ -14,7 +14,7 @@ class Agent extends Equatable {
   Agent.fromJson(Map<String, dynamic> json)
       : status = json['status'],
         data = (json['data'] as List)
-            .map((agent) => AgentData.fromJson(json))
+            .map((agent) => AgentData.fromJson(agent))
             .toList(),
         error = json['error'];
 
