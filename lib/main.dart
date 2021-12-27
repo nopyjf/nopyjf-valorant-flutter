@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nopy_valorant_flutter_app/landing/landing.dart';
+
+import 'landing/view/landing_view.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:nopy_valorant_flutter_app/core/network/api_constant.dart';
-import 'package:nopy_valorant_flutter_app/landing/model/agent.dart';
+
+import '../landing.dart';
 
 class AgentService {
   Future<Agent> getAgents() async {
