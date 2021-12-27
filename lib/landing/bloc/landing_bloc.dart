@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:nopy_valorant_flutter_app/landing/model/agent.dart';
-import 'package:nopy_valorant_flutter_app/landing/network/agent_service.dart';
+import 'package:nopy_valorant_flutter_app/core/my_core.dart';
+import 'package:nopy_valorant_flutter_app/landing/landing.dart';
 
 part 'landing_event.dart';
 
@@ -20,10 +20,10 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
   ) async {
     if (state.status == LandingStatus.loading) {
       var data = await service.getAgents();
-      if (data.status == 200) {
+      if (data.status == MyStatus.success) {
         _landingSuccess(emit, data.data);
-      } else if (data.status == 400) {
-        _landingError(emit, data.error ?? "");
+      } else if (data.status == MyStatus.error) {
+        _landingError(emit, data.error);
       }
     }
   }

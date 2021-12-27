@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../landing.dart';
+import 'package:nopy_valorant_flutter_app/core/my_core.dart';
+import 'package:nopy_valorant_flutter_app/landing/landing.dart';
 
 class LandingAgentList extends StatelessWidget {
   final List<AgentData> data;
@@ -11,20 +11,20 @@ class LandingAgentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 16,
+      padding: EdgeInsets.symmetric(
+        horizontal: MySize.size16,
+        vertical: MySize.size16,
       ),
-      decoration: const BoxDecoration(color: Color(0xFF0C1824)),
+      decoration: BoxDecoration(color: MyColor.backGround),
       child: GridView.builder(
-        itemCount: data.length,
+        itemCount: data.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
           return _agentItem(index);
         },
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisSpacing: 8,
-          mainAxisSpacing: 8,
-          crossAxisCount: 2,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisSpacing: MySize.size8,
+          mainAxisSpacing: MySize.size8,
+          crossAxisCount: MyCount.count2,
         ),
       ),
     );
@@ -32,13 +32,13 @@ class LandingAgentList extends StatelessWidget {
 
   Widget _agentName(int index) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8),
+      padding: EdgeInsets.only(left: MySize.size8),
       child: Text(
-        data[index].displayName ?? "",
+        data[index].displayName,
         style: GoogleFonts.kanit(
           fontWeight: FontWeight.normal,
           color: Colors.white,
-          fontSize: 16,
+          fontSize: MySize.size16,
         ),
       ),
     );
@@ -46,20 +46,20 @@ class LandingAgentList extends StatelessWidget {
 
   Widget _agentRole(int index) {
     return Padding(
-      padding: const EdgeInsets.only(right: 8),
+      padding: EdgeInsets.only(right: MySize.size8),
       child: Image.network(
         data[index].role?.displayIcon ?? "",
-        width: 16,
-        height: 16,
+        width: MySize.size16,
+        height: MySize.size16,
       ),
     );
   }
 
   Widget _agentDataTab(int index) {
     return Expanded(
-      flex: 1,
+      flex: MyCount.count1,
       child: Container(
-        decoration: const BoxDecoration(color: Color(0x61000000)),
+        decoration: BoxDecoration(color: MyColor.agentTab),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -72,9 +72,9 @@ class LandingAgentList extends StatelessWidget {
   }
 
   Widget _agentSpacing() {
-    return const Expanded(
-      flex: 3,
-      child: SizedBox(),
+    return Expanded(
+      flex: MyCount.count3,
+      child: const SizedBox(),
     );
   }
 
@@ -83,7 +83,7 @@ class LandingAgentList extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Image.network(
-          data[index].displayIcon ?? "",
+          data[index].displayIcon,
           fit: BoxFit.fill,
         ),
         Column(
