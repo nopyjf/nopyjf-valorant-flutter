@@ -17,7 +17,7 @@ class LandingAgentList extends StatelessWidget {
       ),
       decoration: BoxDecoration(color: MyColor.backGround),
       child: GridView.builder(
-        itemCount: data.length ?? 0,
+        itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
           return _agentItem(index);
         },
