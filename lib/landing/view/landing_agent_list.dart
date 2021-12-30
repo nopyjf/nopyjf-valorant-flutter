@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nopy_valorant_flutter_app/core/my_core.dart';
-import 'package:nopy_valorant_flutter_app/landing/landing.dart';
+import 'package:nopy_valorant_flutter_app/model/agent.dart';
 
 class LandingAgentList extends StatelessWidget {
   final List<AgentData> data;

@@ -2,12 +2,15 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:nopy_valorant_flutter_app/core/my_core.dart';
 import 'package:nopy_valorant_flutter_app/landing/landing.dart';
+import 'package:nopy_valorant_flutter_app/model/agent.dart';
 
 part 'landing_event.dart';
 
 part 'landing_state.dart';
 
 class LandingBloc extends Bloc<LandingEvent, LandingState> {
+  final AgentService service;
+
   LandingBloc({
     required this.service,
   }) : super(const LandingState()) {
@@ -45,6 +48,4 @@ class LandingBloc extends Bloc<LandingEvent, LandingState> {
       ),
     );
   }
-
-  final AgentService service;
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'landing/view/landing_view.dart';
+import 'package:nopy_valorant_flutter_app/detail/view/detail_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LandingPage(),
+      // home: const LandingPage(),
+      home: const DetailPage(),
     );
   }
 }
