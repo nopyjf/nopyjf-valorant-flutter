@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nopy_valorant_flutter_app/detail/view/detail_page.dart';
+
+import 'core/my_core.dart';
+import 'detail/detail.dart';
+import 'landing/landing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,11 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      // home: const LandingPage(),
-      home: const DetailPage(),
+      initialRoute: MyRoute.landing,
+      routes: {
+        MyRoute.landing: (context) => const LandingPage(),
+        MyRoute.detail: (context) => const DetailPage(),
+      },
     );
   }
 }

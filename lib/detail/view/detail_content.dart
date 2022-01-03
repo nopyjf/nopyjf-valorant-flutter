@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nopy_valorant_flutter_app/core/my_core.dart';
+import 'package:nopy_valorant_flutter_app/detail/detail.dart';
+import 'package:nopy_valorant_flutter_app/model/agent.dart';
 
 import 'detail_view.dart';
 
@@ -9,37 +12,36 @@ class DetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Expanded(
-          flex: 3,
-          child: SizedBox(),
-        ),
-        Expanded(
-          flex: 4,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints.expand(),
-            child: Container(
-              decoration: _contentBoxDecoration(),
-              child: Column(
-                children: [
-                  _agentName("Breach"),
-                  _agentRole(
-                    "Initiator",
-                    "https://media.valorant-api.com/agents/roles/1b47567f-8f7b-444b-aae3-b0c634622d10/displayicon.png",
-                  ),
-                  _agentDetail(
-                    "The bionic Swede Breach fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
-                  ),
-                  _skillLabel(),
-                  const DetailSkillListView(data: [])
-                ],
+    return BlocBuilder<DetailBloc, DetailState>(builder: (_, state) {
+      return Column(
+        children: [
+          const Expanded(
+            flex: 3,
+            child: SizedBox(),
+          ),
+          Expanded(
+            flex: 4,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints.expand(),
+              child: Container(
+                decoration: _contentBoxDecoration(),
+                child: Column(
+                  children: [
+                    _agentName(state.agent?.displayName ?? ""),
+                    _agentRole(state.agent?.role),
+                    _agentDetail(
+                      state.agent?.description ?? "",
+                    ),
+                    _skillLabel(),
+                    DetailSkillListView(data: state.agent?.abilities ?? [])
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 
   BoxDecoration _contentBoxDecoration() {
@@ -71,7 +73,7 @@ class DetailContent extends StatelessWidget {
     );
   }
 
-  Widget _agentRole(String role, String image) {
+  Widget _agentRole(Role? role) {
     return Container(
       padding: const EdgeInsets.only(
         left: 32,
@@ -82,14 +84,14 @@ class DetailContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.network(
-            image,
+            role?.displayIcon ?? "",
             width: 24,
             height: 24,
           ),
           Container(
             padding: const EdgeInsets.only(left: 8),
             child: Text(
-              role,
+              role?.displayName ?? "",
               style: GoogleFonts.kanit(
                 fontWeight: FontWeight.normal,
                 color: Colors.white,

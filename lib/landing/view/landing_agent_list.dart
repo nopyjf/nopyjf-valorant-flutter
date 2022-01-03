@@ -19,7 +19,7 @@ class LandingAgentList extends StatelessWidget {
       child: GridView.builder(
         itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
-          return _agentItem(index);
+          return _agentItem(context, index);
         },
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: MySize.size8,
@@ -78,21 +78,36 @@ class LandingAgentList extends StatelessWidget {
     );
   }
 
-  Widget _agentItem(int index) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Image.network(
-          data[index].displayIcon,
-          fit: BoxFit.fill,
-        ),
-        Column(
-          children: [
-            _agentSpacing(),
-            _agentDataTab(index),
-          ],
-        )
-      ],
+  Widget _agentItem(BuildContext context, int index) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, MyRoute.detail, arguments: data[index]);
+      },
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.network(
+            data[index].displayIcon,
+            fit: BoxFit.fill,
+            loadingBuilder: (
+              BuildContext context,
+              Widget child,
+              ImageChunkEvent? loadingProgress,
+            ) {
+              if (loadingProgress == null) return child;
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          ),
+          Column(
+            children: [
+              _agentSpacing(),
+              _agentDataTab(index),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

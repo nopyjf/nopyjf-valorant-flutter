@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nopy_valorant_flutter_app/model/agent.dart';
 
 class DetailSkillListView extends StatelessWidget {
@@ -8,40 +9,57 @@ class DetailSkillListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      padding: const EdgeInsets.only(
-        left: 16,
-      ),
-      child: ListView.builder(
+    print(data.toString());
+
+    return SizedBox(
+      height: 100,
+      child: ListView.separated(
+          padding: const EdgeInsets.only(
+            left: 16,
+            right: 16,
+            top: 8,
+            bottom: 8,
+          ),
+          scrollDirection: Axis.horizontal,
           itemCount: data.length,
+          separatorBuilder: (BuildContext context, int index) {
+            return const Padding(
+              padding: EdgeInsets.only(right: 16),
+            );
+          },
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
+              padding: const EdgeInsets.only(
+                left: 12,
+                right: 12,
+              ),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white,
+                ),
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
               ),
-              child: Container(
-                padding: const EdgeInsets.only(
-                  left: 12,
-                  right: 12,
-                  top: 14,
-                  bottom: 14,
-                ),
-                child: Row(
-                  children: [
-                    Image.network(
-                      data[index].displayIcon,
-                      width: 48,
-                      height: 48,
+              child: Row(
+                children: [
+                  Image.network(
+                    data[index].displayIcon,
+                    width: 48,
+                    height: 48,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16),
+                  ),
+                  Text(
+                    data[index].displayName,
+                    style: GoogleFonts.kanit(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      fontSize: 12,
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16),
-                    ),
-                    Text(data[index].displayName)
-                  ],
-                ),
+                  )
+                ],
               ),
             );
           }),

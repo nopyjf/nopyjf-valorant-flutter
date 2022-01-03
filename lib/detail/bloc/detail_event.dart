@@ -5,11 +5,4 @@ abstract class DetailEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetDetailEvent extends DetailEvent {
-  late final AgentData agent;
-
-  GetDetailEvent({required this.agent});
-
-  @override
-  List<Object> get props => [agent];
-}
+class GetDetailEvent extends DetailEvent { }

@@ -27,6 +27,7 @@ class AgentData extends Equatable {
   final String displayName;
   final String description;
   final String displayIcon;
+  final String bustPortrait;
   final Role? role;
   final List<Ability>? abilities;
 
@@ -35,10 +36,11 @@ class AgentData extends Equatable {
         displayName = json['displayName'] ?? "",
         description = json['description'] ?? "",
         displayIcon = json['displayIcon'] ?? "",
+        bustPortrait = json['bustPortrait'] ?? "",
         role = json['role'] != null ? Role.fromJson(json['role']) : null,
         abilities = json['abilities'] != null
             ? (json['abilities'] as List)
-                .map((ability) => Ability.fromJson(json))
+                .map((ability) => Ability.fromJson(ability))
                 .toList()
             : null;
 
