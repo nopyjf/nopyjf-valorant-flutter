@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nopy_valorant_flutter_app/core/my_core.dart';
 
-import 'detail_skill_list_view.dart';
+import 'detail_view.dart';
 
 class DetailContent extends StatelessWidget {
   const DetailContent({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class DetailContent extends StatelessWidget {
                     "The bionic Swede Breach fires powerful, targeted kinetic blasts to aggressively clear a path through enemy ground. The damage and disruption he inflicts ensures no fight is ever fair.",
                   ),
                   _skillLabel(),
-                  DetailSkillListView(data: [])
+                  const DetailSkillListView(data: [])
                 ],
               ),
             ),
