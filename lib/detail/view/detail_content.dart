@@ -15,33 +15,36 @@ class DetailContent extends StatelessWidget {
     return BlocBuilder<DetailBloc, DetailState>(builder: (_, state) {
       return Column(
         children: [
-          const Expanded(
-            flex: 3,
-            child: SizedBox(),
+          Expanded(
+            flex: MyCount.count3,
+            child: const SizedBox(),
           ),
           Expanded(
-            flex: 4,
+            flex: MyCount.count4,
             child: ConstrainedBox(
-              constraints: const BoxConstraints.expand(),
-              child: Container(
-                decoration: _contentBoxDecoration(),
-                child: Column(
-                  children: [
-                    _agentName(state.agent?.displayName ?? ""),
-                    _agentRole(state.agent?.role),
-                    _agentDetail(
-                      state.agent?.description ?? "",
-                    ),
-                    _skillLabel(),
-                    DetailSkillListView(data: state.agent?.abilities ?? [])
-                  ],
-                ),
-              ),
-            ),
+                constraints: const BoxConstraints.expand(),
+                child: Container(
+                  decoration: _contentBoxDecoration(),
+                  child: _agentData(state),
+                )),
           ),
         ],
       );
     });
+  }
+
+  Widget _agentData(DetailState state) {
+    return Column(
+      children: [
+        _agentName(state.agent?.displayName ?? BaseLine.empty),
+        _agentRole(state.agent?.role),
+        _agentDetail(
+          state.agent?.description ?? BaseLine.empty,
+        ),
+        _skillLabel(),
+        DetailSkillListView(data: state.agent?.abilities ?? [])
+      ],
+    );
   }
 
   BoxDecoration _contentBoxDecoration() {
@@ -57,17 +60,17 @@ class DetailContent extends StatelessWidget {
   Widget _agentName(String name) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.only(
-        top: 24,
-        left: 32,
-        right: 32,
+      padding: EdgeInsets.only(
+        top: MySize.size24,
+        left: MySize.size32,
+        right: MySize.size32,
       ),
       child: Text(
         name,
         style: GoogleFonts.kanit(
           fontWeight: FontWeight.w500,
           color: Colors.white,
-          fontSize: 36,
+          fontSize: MySize.size36,
         ),
       ),
     );
@@ -75,27 +78,27 @@ class DetailContent extends StatelessWidget {
 
   Widget _agentRole(Role? role) {
     return Container(
-      padding: const EdgeInsets.only(
-        left: 32,
-        right: 32,
+      padding: EdgeInsets.only(
+        left: MySize.size32,
+        right: MySize.size32,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.network(
-            role?.displayIcon ?? "",
-            width: 24,
-            height: 24,
+            role?.displayIcon ?? BaseLine.empty,
+            width: MySize.size24,
+            height: MySize.size24,
           ),
           Container(
-            padding: const EdgeInsets.only(left: 8),
+            padding: EdgeInsets.only(left: MySize.size8),
             child: Text(
-              role?.displayName ?? "",
+              role?.displayName ?? BaseLine.empty,
               style: GoogleFonts.kanit(
                 fontWeight: FontWeight.normal,
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: MySize.size24,
               ),
             ),
           ),
@@ -106,19 +109,19 @@ class DetailContent extends StatelessWidget {
 
   Widget _agentDetail(String data) {
     return Container(
-      padding: const EdgeInsets.only(
-        top: 8,
-        bottom: 16,
-        left: 32,
-        right: 32,
+      padding: EdgeInsets.only(
+        top: MySize.size8,
+        bottom: MySize.size16,
+        left: MySize.size32,
+        right: MySize.size32,
       ),
       child: Text(
         data,
         style: GoogleFonts.kanit(
-          height: 2,
+          height: MySize.size2,
           fontWeight: FontWeight.normal,
           color: Colors.white,
-          fontSize: 12,
+          fontSize: MySize.size12,
         ),
       ),
     );
@@ -127,17 +130,17 @@ class DetailContent extends StatelessWidget {
   Widget _skillLabel() {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.only(
-        top: 24,
-        left: 32,
-        right: 32,
+      padding: EdgeInsets.only(
+        top: MySize.size24,
+        left: MySize.size32,
+        right: MySize.size32,
       ),
       child: Text(
-        "Skill",
+        BaseLine.detailSkill,
         style: GoogleFonts.kanit(
           fontWeight: FontWeight.normal,
           color: Colors.white,
-          fontSize: 24,
+          fontSize: MySize.size24,
         ),
       ),
     );

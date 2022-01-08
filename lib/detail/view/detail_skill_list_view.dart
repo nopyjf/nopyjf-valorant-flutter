@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nopy_valorant_flutter_app/core/my_core.dart';
 import 'package:nopy_valorant_flutter_app/model/agent.dart';
 
 class DetailSkillListView extends StatelessWidget {
@@ -9,54 +10,52 @@ class DetailSkillListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(data.toString());
-
     return SizedBox(
-      height: 100,
+      height: MySize.size100,
       child: ListView.separated(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 8,
-            bottom: 8,
+          padding: EdgeInsets.only(
+            left: MySize.size16,
+            right: MySize.size16,
+            top: MySize.size8,
+            bottom: MySize.size8,
           ),
           scrollDirection: Axis.horizontal,
           itemCount: data.length,
           separatorBuilder: (BuildContext context, int index) {
-            return const Padding(
-              padding: EdgeInsets.only(right: 16),
+            return Padding(
+              padding: EdgeInsets.only(right: MySize.size16),
             );
           },
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              padding: const EdgeInsets.only(
-                left: 12,
-                right: 12,
+              padding: EdgeInsets.only(
+                left: MySize.size12,
+                right: MySize.size12,
               ),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.white,
                 ),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(5),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(MySize.size5),
                 ),
               ),
               child: Row(
                 children: [
                   Image.network(
                     data[index].displayIcon,
-                    width: 48,
-                    height: 48,
+                    width: MySize.size48,
+                    height: MySize.size48,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 16),
+                  Padding(
+                    padding: EdgeInsets.only(left: MySize.size16),
                   ),
                   Text(
                     data[index].displayName,
                     style: GoogleFonts.kanit(
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: MySize.size12,
                     ),
                   )
                 ],

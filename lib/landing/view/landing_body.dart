@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nopy_valorant_flutter_app/core/my_core.dart';
 import 'package:nopy_valorant_flutter_app/landing/landing.dart';
 
 class LandingBody extends StatelessWidget {
@@ -11,7 +12,7 @@ class LandingBody extends StatelessWidget {
       builder: (_, state) {
         switch (state.status) {
           case LandingStatus.loading:
-            return const Text("Loading");
+            return Text(BaseLine.loading);
           case LandingStatus.success:
             return LandingAgentList(data: state.agents);
           case LandingStatus.error:

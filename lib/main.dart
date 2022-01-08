@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'core/my_core.dart';
-import 'detail/detail.dart';
-import 'landing/landing.dart';
+import 'package:nopy_valorant_flutter_app/core/my_core.dart';
+import 'package:nopy_valorant_flutter_app/detail/detail.dart';
+import 'package:nopy_valorant_flutter_app/landing/landing.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: BaseLine.appName,
       initialRoute: MyRoute.landing,
       routes: {
         MyRoute.landing: (context) => const LandingPage(),
