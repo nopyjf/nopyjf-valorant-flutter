@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nopy_valorant_flutter_app/core/my_core.dart';
 import 'package:nopy_valorant_flutter_app/detail/detail.dart';
@@ -8,41 +7,39 @@ import 'package:nopy_valorant_flutter_app/model/agent.dart';
 import 'detail_view.dart';
 
 class DetailContent extends StatelessWidget {
-  const DetailContent({Key? key}) : super(key: key);
+  final AgentData data;
+
+  const DetailContent({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailBloc, DetailState>(builder: (_, state) {
-      return Column(
-        children: [
-          Expanded(
-            flex: MyCount.count3,
-            child: const SizedBox(),
-          ),
-          Expanded(
-            flex: MyCount.count4,
-            child: ConstrainedBox(
-                constraints: const BoxConstraints.expand(),
-                child: Container(
-                  decoration: _contentBoxDecoration(),
-                  child: _agentData(state),
-                )),
-          ),
-        ],
-      );
-    });
-  }
-
-  Widget _agentData(DetailState state) {
     return Column(
       children: [
-        _agentName(state.agent?.displayName ?? BaseLine.empty),
-        _agentRole(state.agent?.role),
-        _agentDetail(
-          state.agent?.description ?? BaseLine.empty,
+        Expanded(
+          flex: MyCount.count3,
+          child: const SizedBox(),
         ),
+        Expanded(
+          flex: MyCount.count4,
+          child: ConstrainedBox(
+              constraints: const BoxConstraints.expand(),
+              child: Container(
+                decoration: _contentBoxDecoration(),
+                child: _agentData(data),
+              )),
+        ),
+      ],
+    );
+  }
+
+  Widget _agentData(AgentData state) {
+    return Column(
+      children: [
+        _agentName(data.displayName),
+        _agentRole(data.role),
+        _agentDetail(data.description),
         _skillLabel(),
-        DetailSkillListView(data: state.agent?.abilities ?? [])
+        DetailSkillListView(data: data.abilities ?? [])
       ],
     );
   }

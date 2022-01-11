@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nopy_valorant_flutter_app/core/my_core.dart';
-import 'package:nopy_valorant_flutter_app/detail/detail.dart';
 
 class DetailAppBar extends StatelessWidget {
-  const DetailAppBar({Key? key}) : super(key: key);
+  final String bustPortrait;
+
+  const DetailAppBar({Key? key, required this.bustPortrait}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailBloc, DetailState>(
-      builder: (_, state) {
-        return Column(
-          children: [
-            _detailAppBarExit(
-              context,
-              MediaQuery.of(context).viewPadding.top,
-            ),
-            _detailAppBarImage(state),
-          ],
-        );
-      },
+    return Column(
+      children: [
+        _detailAppBarExit(
+          context,
+          MediaQuery.of(context).viewPadding.top,
+        ),
+        _detailAppBarImage(bustPortrait),
+      ],
     );
   }
 
@@ -56,9 +52,9 @@ class DetailAppBar extends StatelessWidget {
     );
   }
 
-  Widget _detailAppBarImage(DetailState state) {
+  Widget _detailAppBarImage(String bustPortrait) {
     return Image.network(
-      state.agent?.bustPortrait ?? BaseLine.empty,
+      bustPortrait,
       loadingBuilder: (
         BuildContext context,
         Widget child,
